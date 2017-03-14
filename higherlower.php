@@ -1,28 +1,27 @@
 <?php 
 
-if ($argc == 3  && ((is_numeric($argv[1])) && (is_numeric($argv[2])))) {
+if ($argc >= 2  && ((is_numeric($argv[1])) && (is_numeric($argv[2])))) {
 
 	$min = $argv[1];
 	$max = $argv[2];
 
-
-} elseif ($argc == 3 && (!is_numeric($argv[1]) || !is_numeric($argv[2]))) {
+} elseif ($argc >= 2 && (!is_numeric($argv[1]) || !is_numeric($argv[2]))) {
 
 	fwrite(STDERR, "enter in 2 valid numeric values as parameters". PHP_EOL);
-	
 	do {
+
 		fwrite(STDOUT, "enter in a valid numeric \$min value." . PHP_EOL);
 		$min = trim(fgets(STDIN));
 
 	} while (!is_numeric($min));
 
 	do {
+
 		fwrite(STDOUT, "enter in a valid numeric \$max value." . PHP_EOL);
 		$max = trim(fgets(STDIN));
 
-	} while (!is_numeric($max) || ($max < $min));
+	} while (!is_numeric($max) || ($max <= $min));
 	
-
 } else {
 
 	$min = 1;
@@ -30,8 +29,6 @@ if ($argc == 3  && ((is_numeric($argv[1])) && (is_numeric($argv[2])))) {
 }
 
 $randomNum = rand($min, $max);
-
-var_dump($randomNum);
 
 do {
 
