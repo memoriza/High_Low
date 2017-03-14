@@ -2,31 +2,23 @@
 
 $randomNum = rand(1, 100);
 
-var_dump($randomNum);
-
 do {
-	fwrite(STDOUT, "\n Guess the random number! \n");
+
+	fwrite(STDOUT, "\n Guess the random number!" . PHP_EOL);
 
 	$userGuess = trim(fgets(STDIN));
 
 	if ($userGuess == $randomNum) {
-
 		fwrite(STDOUT, "Correct! You are awesome!");
-
 		break;
 
 	} elseif ($userGuess > $randomNum) {
-
-		fwrite(STDOUT, " : Try Lower & Guess the random number! ");
-
+		fwrite(STDOUT, "Try Lower & Guess Again! ");
 		continue;
 
-	} elseif ($userGuess < $randomNum) {
-
-		fwrite(STDOUT, " : Try Higher & Guess Again" );
-
+	} else {
+		fwrite(STDOUT, "Try Higher & Guess Again!");
 		continue;
-
 	}
 
 } while ($userGuess != $randomNum); 
