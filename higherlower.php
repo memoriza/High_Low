@@ -1,33 +1,34 @@
 <?php 
 
-$userGuess = trim(fgets(STDIN));
-
 $randomNum = rand(1, 100);
 
+var_dump($randomNum);
 
-function higherLower { 
+do {
+	fwrite(STDOUT, "\n Guess the random number! \n");
 
-	fwrite(STDOUT, "Guess the random number! ") . PHP_EOL;
+	$userGuess = trim(fgets(STDIN));
 
-	if ($userGuess === $randomNum) {
+	if ($userGuess == $randomNum) {
 
-		echo "Correct! You are awesome!" . PHP_EOL;
+		fwrite(STDOUT, "Correct! You are awesome!");
+
+		break;
 
 	} elseif ($userGuess > $randomNum) {
-		fwrite(STDOUT, "Try Lower & Guess the random number! ") . PHP_EOL;
-		fwrite(STDOUT, "You guessed $userGuess");
-		higherLower();
+
+		fwrite(STDOUT, " : Try Lower & Guess the random number! ");
+
+		continue;
 
 	} elseif ($userGuess < $randomNum) {
-		fwrite(STDOUT, "Try Higher & Guess Again" ) . PHP_EOL;
-		fwrite(STDOUT, "You guessed $userGuess");
-		higherLower();
-	} else {
-		echo "Guess?" . PHP_EOL;
-		fwrite(STDOUT, "Guess the random number! ") . PHP_EOL;
-		fwrite(STDOUT, "You guessed $userGuess");
-};		higherLower();
 
-higherLower();
+		fwrite(STDOUT, " : Try Higher & Guess Again" );
+
+		continue;
+
+	}
+
+} while ($userGuess != $randomNum); 
 
 ?>
