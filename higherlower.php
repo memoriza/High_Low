@@ -1,6 +1,14 @@
 <?php 
 
-$randomNum = rand(1, 100);
+if ($argc == 1) {
+
+	$randomNum = rand(1, 100);
+
+} else {
+
+	$randomNum = rand($argv[1], $argv[2]);
+
+};
 
 do {
 
