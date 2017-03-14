@@ -1,18 +1,41 @@
 <?php 
 
-if ($argc == 1) {
+if ($argc == 3  && ((is_numeric($argv[1])) && (is_numeric($argv[2])))) {
 
-	$randomNum = rand(1, 100);
+	$min = $argv[1];
+	$max = $argv[2];
+
+
+} elseif ($argc == 3 && (!is_numeric($argv[1]) || !is_numeric($argv[2]))) {
+
+	fwrite(STDERR, "enter in 2 valid numeric values as parameters". PHP_EOL);
+	
+	do {
+		fwrite(STDOUT, "enter in a valid numeric \$min value." . PHP_EOL);
+		$min = trim(fgets(STDIN));
+
+	} while (!is_numeric($min));
+
+	do {
+		fwrite(STDOUT, "enter in a valid numeric \$max value." . PHP_EOL);
+		$max = trim(fgets(STDIN));
+
+	} while (!is_numeric($max) || ($max < $min));
+	
 
 } else {
 
-	$randomNum = rand($argv[1], $argv[2]);
+	$min = 1;
+	$max = 100;
+}
 
-};
+$randomNum = rand($min, $max);
+
+var_dump($randomNum);
 
 do {
 
-	fwrite(STDOUT, "\n Guess the random number!" . PHP_EOL);
+	fwrite(STDOUT, "\n Guess the random number $min-$max!" . PHP_EOL);
 
 	$userGuess = trim(fgets(STDIN));
 
