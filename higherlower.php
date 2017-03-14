@@ -8,6 +8,7 @@ if ($argc >= 2  && ((is_numeric($argv[1])) && (is_numeric($argv[2])))) {
 } elseif ($argc >= 2 && (!is_numeric($argv[1]) || !is_numeric($argv[2]))) {
 
 	fwrite(STDERR, "enter in 2 valid numeric values as parameters". PHP_EOL);
+
 	do {
 
 		fwrite(STDOUT, "enter in a valid numeric \$min value." . PHP_EOL);
@@ -32,17 +33,20 @@ $randomNum = rand($min, $max);
 
 do {
 
-	fwrite(STDOUT, "\n Guess the random number $min-$max!" . PHP_EOL);
+	do {
+		fwrite(STDOUT, "\n Guess the random number $min-$max with a numeric value!" . PHP_EOL);
 
-	$userGuess = trim(fgets(STDIN));
+		$userGuess = trim(fgets(STDIN));
+
+	} while (!is_numeric($userGuess));
 
 	if ($userGuess == $randomNum) {
 		fwrite(STDOUT, "Correct! You are awesome!");
-		break;
+	break;
 
 	} elseif ($userGuess > $randomNum) {
 		fwrite(STDOUT, "Try Lower & Guess Again! ");
-		continue;
+	continue;
 
 	} else {
 		fwrite(STDOUT, "Try Higher & Guess Again!");
